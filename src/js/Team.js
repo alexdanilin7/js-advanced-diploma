@@ -16,8 +16,8 @@ export default class Team {
     this.characters = [...characters];
   }
 
-  add(character) {
-    this.characters.push(character);
+  toArray() {
+    return this.characters;
   }
 
   *[Symbol.iterator]() {

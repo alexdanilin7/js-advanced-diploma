@@ -22,6 +22,22 @@ export default class Character {
     this.defence = 0;
     this.health = 50;
     this.type = type;
-    // TODO: выбросите исключение, если кто-то использует "new Character()"
+    
+     for (let i = 1; i < level; i++) {
+      this.levelUp();
+    }
+  }
+  levelUp() {
+    if (this.health === 0) {
+      throw new Error('Нельзя повысить уровень мёртвого персонажа');
+    }
+
+    this.level += 1;
+    const multiplier = (80 + this.health) / 100;
+
+    this.attack = Math.max(this.attack, Math.floor(this.attack * multiplier));
+    this.defence = Math.max(this.defence, Math.floor(this.defence * multiplier));
+
+    this.health = Math.min(100, this.level + 80);
   }
 }
