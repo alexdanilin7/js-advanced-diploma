@@ -1,5 +1,5 @@
-import { calcTileType } from './utils';
-
+import { getNextTheme, calcTileType } from './utils';
+import  themes  from '../src/js/themes';
 describe('calcTileType function', () => {
   const boardSize = 8;
 
@@ -38,4 +38,11 @@ describe('calcTileType function', () => {
   test('should return "center" for center tiles', () => {
     expect(calcTileType(boardSize * 3 + 3, boardSize)).toBe('center');
   });
+  test('getNextTheme prairie -> desert', () => {
+  expect(getNextTheme(themes.prairie)).toBe(themes.desert);
+});
+
+test('getNextTheme mountain -> null', () => {
+  expect(getNextTheme(themes.mountain)).toBeNull();
+});
 });

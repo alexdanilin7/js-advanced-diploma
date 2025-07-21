@@ -8,6 +8,7 @@
  * возвращает новый экземпляр класса персонажа
  *
  */
+import Team from './Team.js';
 export function* characterGenerator(allowedTypes, maxLevel) {
   while (true) {
     const randomClass = allowedTypes[Math.floor(Math.random() * allowedTypes.length)];
@@ -26,11 +27,11 @@ export function* characterGenerator(allowedTypes, maxLevel) {
 export function generateTeam(allowedTypes, maxLevel, characterCount) {
   // TODO: write logic here
   const generator = characterGenerator(allowedTypes, maxLevel);
-  const team = [];
+  const characters = [];
 
   for (let i = 0; i < characterCount; i++) {
-    team.push(generator.next().value);
+    characters.push(generator.next().value);
   }
 
-  return team;
+  return new Team(characters);
 }
